@@ -1,0 +1,19 @@
+{
+  "name": "loopy",
+  "version": "0.0.1",
+  "description": "Stupidly simple script to loop a shell command and do something if any error happen.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kylir/loopy.git"
+  },
+  "author": "Jason Forest",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kylir/loopy/issues"
+  },
+  "homepage": "https://github.com/Kylir/loopy"
+}
