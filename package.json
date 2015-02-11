@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Kylir/loopy/issues"
   },
-  "homepage": "https://github.com/Kylir/loopy"
+  "homepage": "https://github.com/Kylir/loopy",
+  "dependencies": {
+    "chalk": "^0.5.1"
+  }
 }
