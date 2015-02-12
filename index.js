@@ -19,11 +19,9 @@ var loopFunction = function(){
     var child = spawn(command, args, options);
     var date = new Date().toISOString().replace('T', ' ').substr(11, 8);
     var output = "";
-
     child.stdout.on('data', function (data) {
         output += data;
     });
-
     child.on('exit', function(){
         if( output.match(errorPattern) ){
             console.log( chalk.red(date) + " " + chalk.blue("Error!") );
@@ -32,20 +30,14 @@ var loopFunction = function(){
             console.log( chalk.red(date) + " " + chalk.green('OK') );
         }
     });
-
 };
 
-
-//Infinite Testing Loop!
 var testLoop = setInterval(loopFunction, delay);
-
 console.log("Loopy started. Delay is: " + delay/60000 + " mins.");
 
 //Now let's defined some listeners so that the user can change the delay on the fly
 process.stdin.on('data', function(inputBuffer){
-
     var input = inputBuffer.toString();
-
     //Display current delay
     if( input.match(/delay/) ){
         console.log("Current delay is " + (delay/60000) + " min(s).");
@@ -70,10 +62,7 @@ process.stdin.on('data', function(inputBuffer){
     } else {
         console.log( chalk.blue("Error!") + " Unknonw command. Use delay, +, -, quit or now.");
     }
-
-
 });
-
 
 /**
  * Function to change the value of the delay and reset the timer function.
@@ -83,9 +72,7 @@ process.stdin.on('data', function(inputBuffer){
  * @param inc The value of the increase (can be negative)
  */
 function changeDelayAndResetInterval( delay, inc ){
-
     var newDelay = delay + inc;
-
     if( newDelay < MIN_DELAY ){
         console.log( chalk.blue("Error: Delay can't be below " + MIN_DELAY/60000 + " minutes.") );
         return delay;
