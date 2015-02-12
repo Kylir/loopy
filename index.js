@@ -4,16 +4,16 @@
 var spawn = require('child_process').spawn;
 var chalk = require('chalk');
 
-var delay = 1000 * 60 * 10; // Every 10 minutes
+var delay = 1000 * 60 * 10; // 10 minutes
 var MAX_DELAY = 20 * 60 * 1000; //20 minutes
 var MIN_DELAY = 60 * 1000; //1 minute
-var newDelay = delay;
 
 var command = 'node';
 var args = [ './node_modules/karma/bin/karma', 'start', './public/spec/karma_conf.js', '--reporters', 'dots', '--single-run' ];
 var options = {
     cwd: '/projects/mercurial/charting/server'
 };
+var errorPattern = /FAILED/;
 
 var loopFunction = function(){
     var child = spawn(command, args, options);
@@ -25,7 +25,7 @@ var loopFunction = function(){
     });
 
     child.on('exit', function(){
-        if( output.match(/FAILED/) ){
+        if( output.match(errorPattern) ){
             console.log( chalk.red(date) + " " + chalk.blue("Error!") );
             console.log(output);
         } else {
@@ -48,7 +48,7 @@ process.stdin.on('data', function(inputBuffer){
 
     //Display current delay
     if( input.match(/delay/) ){
-        console.log("Current delay is: " + (delay/60000) + " min(s).");
+        console.log("Current delay is " + (delay/60000) + " min(s).");
     //Increase delay by 1 min
     } else if( input.match(/\+/) ){
         delay = changeDelayAndResetInterval( delay, 60000 );
