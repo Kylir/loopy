@@ -34,8 +34,8 @@ Start the program with: `node index.js`
 
 While the script is running it is possible to enter some commands:
 
-* + : will increase the delay by 1 minute.
-* - : will decrease the delay by 1 minute.
+* \+ : will increase the delay by 1 minute.
+* \- : will decrease the delay by 1 minute.
 * delay : will display the current delay.
 * now : will run the command at once and restart the timer.
 * quit : will stop the program.
